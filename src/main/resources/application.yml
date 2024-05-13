@@ -15,7 +15,17 @@ spring:
     defer-datasource-initialization: true
 
   datasource:
-    driver-class-name: org.h2.driver
+    driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:finance-dividend;DB_CLOSE_DELAY=-1
     username: sa
     password:
+
+  redis:
+    host: localhost
+    port: 6379
+
+  jwt:
+    secret: ZGF5b25lLXNwcmluZy1ib290LWRpdmlkZW5kLXByb2plY3QtdHV0b3JpYWwtand0LXNlY3JldC1rZXkK
+scheduler:
+  scrap:
+    yahoo: "0 0 0 * * *"

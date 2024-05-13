@@ -1,9 +1,11 @@
 package com.financedividend.persist.entity;
 
-import jakarta.persistence.*;
+import com.financedividend.model.Company;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.*;
 
 @Entity(name = "COMPANY")
 @Getter
@@ -19,4 +21,9 @@ public class CompanyEntity {
     private String ticker;
 
     private String name;
+
+    public CompanyEntity(Company company) {
+        this.ticker = company.getTicker();
+        this.name = company.getName();
+    }
 }

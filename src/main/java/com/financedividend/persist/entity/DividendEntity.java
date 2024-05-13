@@ -1,19 +1,24 @@
 package com.financedividend.persist.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.financedividend.model.Dividend;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "DIVIDEND")
 @Getter
 @ToString
 @NoArgsConstructor
+@Table(
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        columnNames = { "companyId", "date" }
+                )
+        }
+)
 public class DividendEntity {
 
     @Id
@@ -25,4 +30,10 @@ public class DividendEntity {
     private LocalDateTime date;
 
     private String dividend;
+
+    public DividendEntity(Long companyId, Dividend dividend) {
+        this.companyId = companyId;
+        this.date = dividend.getDate();
+        this.dividend = dividend.getDividend();
+    }
 }
